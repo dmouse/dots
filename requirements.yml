@@ -1,0 +1,10 @@
+# from GitHub
+- src: https://github.com/gantsign/ansible-role-visual-studio-code
+- src: https://github.com/pixelart/ansible-role-phpstorm
+#- src: https://github.com/bennojoy/nginx 
+#  version: master 
+#  name: nginx_role 
+# from Bitbucket 
+#- src: git+http://bitbucket.org/willthames/git-ansible-galaxy 
+#  version: v1.4 # from galaxy 
+

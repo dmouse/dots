@@ -1,0 +1,28 @@
+---
+
+- name: "Setup"
+  hosts: localhost
+  connection: local
+  roles:
+    - role: ansible-role-visual-studio-code
+
+  tasks:
+    - name: "Install basic packages"
+      become: yes
+      dnf:
+        name:
+          - git
+          - vim
+          - fish
+          - chromium
+          - gparted
+          - htop
+          - terminator
+          - rpmfusion-packager
+          - rpmfusion-free-release
+          - remi-release
+          - snapd
+    - name: Install Snap Store
+      snap:
+        name:
+          - snap-store

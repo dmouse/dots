@@ -1,1 +1,6 @@
-# dots
+# Install
+
+```
+make install
+```
+
