@@ -3,11 +3,18 @@
 - name: "Setup"
   hosts: localhost
   connection: local
+
   roles:
-    - role: ansible-role-visual-studio-code
+    - role: ansible-role-docker-ce
 
   tasks:
-    - name: "Install basic packages"
+    - name: "Update"
+      become: yes
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: Install basic packages
       become: yes
       dnf:
         name:
@@ -22,7 +29,46 @@
           - rpmfusion-free-release
           - remi-release
           - snapd
-    - name: Install Snap Store
+          - golang-bin
+          - docker-compose
+          - dnf-plugins-core
+          - google-chrome-stable
+
+    - name: "PHP Packages"
+      become: yes
+      dnf:
+        name:
+          - php-cli
+          - php-mcrypt
+          - php-bcmath
+          - php-zip
+          - php-pdo
+          - php-mysqlnd
+          - php-dom
+          - php-json
+          - php-mbstring
+          - php-gd
+
+    - name: "Current User"
+      become: false
+      local_action: command whoami
+      register: username_on_the_host
+
+    - name: Configure User "{{ username_on_the_host.stdout }}"
+      become: true
+      user:
+        name: "{{ username_on_the_host.stdout }}"
+        shell: /usr/bin/fish
+        groups: docker
+        append: yes
+
+    - name: Install Snap Packages
+      become: true
       snap:
         name:
-          - snap-store
+          - phpstorm
+          - vscode
+          - spotify
+          - obs-studio
+          - zoom-client
+        classic: yes
