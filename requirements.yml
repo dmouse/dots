@@ -1,1 +1,2 @@
 - src: https://github.com/haxorof/ansible-role-docker-ce
+- src: https://github.com/robertdebock/ansible-role-rpmfusion

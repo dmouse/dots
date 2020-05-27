@@ -3,9 +3,11 @@
 - name: "Setup"
   hosts: localhost
   connection: local
+  become: yes
 
   roles:
     - role: ansible-role-docker-ce
+    - role: ansible-role-rpmfusion
 
   tasks:
     - name: "Update"
@@ -51,6 +53,12 @@
           - php-json
           - php-mbstring
           - php-gd
+
+    - name: "Remi"
+      become: yes
+      dnf:
+        name: https://rpms.remirepo.net/fedora/remi-release-31.rpm
+        state: present
 
     - name: "Google Chrome"
       become: yes
