@@ -25,14 +25,13 @@
           - gparted
           - htop
           - terminator
-          - rpmfusion-packager
-          - rpmfusion-free-release
-          - remi-release
+            #- rpmfusion-packager
+            #- rpmfusion-free-release
+            #- remi-release
           - snapd
           - golang-bin
           - docker-compose
           - dnf-plugins-core
-          - google-chrome-stable
           - chromium
           - curl
           - wget
@@ -52,6 +51,12 @@
           - php-json
           - php-mbstring
           - php-gd
+
+    - name: "Google Chrome"
+      become: yes
+      dnf:
+        name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+        state: present
 
     - name: "Current User"
       become: false
@@ -73,7 +78,6 @@
           - phpstorm
           - vscode
           - spotify
-          - obs-studio
           - zoom-client
           - slack
           - riot-web
