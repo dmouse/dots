@@ -84,7 +84,7 @@
       snap:
         name:
           - phpstorm
-          - vscode
+          - code
           - spotify
           - zoom-client
           - slack
